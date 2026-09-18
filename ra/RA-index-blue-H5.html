@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>RA 研究数据平台</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#f7f8fa;color:#111827;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-text-size-adjust:100%}
+button,input,select{font:inherit}body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}
+.topbar{position:sticky;top:0;z-index:30;height:62px;background:rgba(255,255,255,.96);border-bottom:1px solid #e6eaf0;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+.user{display:flex;align-items:center;gap:10px}.brand-logo{width:36px;height:36px;border-radius:9px;background:#0b57d0;color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700;letter-spacing:.2px;flex:none}.avatar{width:36px;height:36px;border-radius:50%;background:#eaf1fd;color:#1257c4;display:grid;place-items:center;font-weight:700;font-size:14px}
+.user-name{font-size:14px;font-weight:600}.user-role{font-size:11px;color:#8a93a3;margin-top:2px}.iconbtn{width:40px;height:40px;border:0;background:transparent;border-radius:9px;display:grid;place-items:center;color:#374151}
+main{padding:20px 14px 38px;max-width:680px;margin:auto}.eyebrow{font-size:13px;color:#8a93a3}h1{font-size:25px;line-height:1.25;margin:6px 0 0;letter-spacing:-.4px}.sub{font-size:13px;color:#8a93a3;margin-top:7px;line-height:1.6}
+.section{margin-top:25px}.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px}.section-title{font-size:18px;font-weight:650}.section-note{font-size:12px;color:#8a93a3;text-align:right}
+.waterfall{display:grid;grid-template-columns:1fr 1fr;gap:10px}.card{background:#fff;border:1px solid #e6eaf0;border-radius:14px;padding:17px;min-width:0}.wide{grid-column:1/-1}
+.metric-label{font-size:13px;color:#8a93a3;font-weight:600}.metric{display:flex;align-items:baseline;gap:5px;margin-top:8px}.metric strong{font-size:29px;line-height:1;font-weight:700}.unit{font-size:13px;color:#8a93a3}.note{font-size:12px;color:#8a93a3;margin-top:8px;line-height:1.45}
+.drill{display:inline-flex;margin-top:12px;color:#1257c4;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer}.barrow{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #f0f2f6}.barrow:last-child{border-bottom:0}.barname{font-size:13px;flex:1}.barnum{font-size:13px;font-weight:650}
+.bar{height:6px;background:#eef2f7;border-radius:999px;overflow:hidden;margin-top:5px}.bar>i{display:block;height:100%;background:#0b57d0;border-radius:999px}.risk,.feed{padding:12px 0;border-bottom:1px solid #f0f2f6}.risk:last-child,.feed:last-child{border-bottom:0}
+.risk-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.risk-name{font-size:14px;font-weight:600}.badge{font-size:11px;padding:3px 8px;border-radius:999px;background:#fdf1ef;color:#d93025;font-weight:600}
+.feed{display:flex;gap:10px}.dot{width:7px;height:7px;border-radius:50%;background:#0b57d0;margin-top:6px;flex:none}.feed-main{flex:1}.feed-name{font-size:14px;font-weight:600}.feed-item{font-size:12px;color:#6b7280;margin-top:3px}.feed-date{font-size:12px;color:#8a93a3}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 12px}.search{width:100%;height:42px;border:1px solid #dfe4ec;background:#fff;border-radius:9px;padding:0 12px;outline:none}.filter{height:40px;border:1px solid #dfe4ec;background:#fff;border-radius:8px;padding:0 10px;color:#374151;flex:1}
+.datebox{display:flex;align-items:center;gap:5px;width:100%;background:#fff;border:1px solid #dfe4ec;border-radius:8px;padding:7px 9px}.datebox span{font-size:12px;color:#8a93a3;white-space:nowrap}.datebox input{border:0;outline:0;min-width:0;flex:1;color:#374151;background:transparent;font-size:12px}
+.patient{background:#fff;border:1px solid #e6eaf0;border-radius:14px;padding:16px;margin-bottom:10px}.patient-top{display:flex;align-items:center;gap:11px}.picon{width:40px;height:40px;border-radius:10px;background:#eaf1fd;color:#1257c4;display:grid;place-items:center;font-weight:700}.pname{font-size:16px;font-weight:650}.pid{font-size:12px;color:#8a93a3;margin-top:3px}.chev{margin-left:auto;color:#8a93a3;font-size:20px}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;padding-top:13px;border-top:1px solid #f0f2f6}.pk{font-size:11px;color:#8a93a3}.pv{font-size:13px;color:#374151;margin-top:3px}.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.tag{font-size:11px;padding:4px 8px;border-radius:999px;background:#f2f4f8;color:#374151}.tag.warn{background:#fdf1ef;color:#d93025}
+.overlay{position:fixed;inset:0;background:rgba(17,24,39,.28);z-index:49;opacity:0;pointer-events:none;transition:.2s}.drawer{position:fixed;right:0;top:0;bottom:0;width:min(82vw,320px);background:#fff;z-index:50;transform:translateX(100%);transition:.22s ease;padding:calc(18px + env(safe-area-inset-top)) 16px 20px;box-shadow:-12px 0 32px rgba(17,24,39,.12)}
+body.menu .overlay{opacity:1;pointer-events:auto}body.menu .drawer{transform:none}.drawer-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:16px;border-bottom:1px solid #e6eaf0}.navitem{display:flex;align-items:center;height:48px;padding:0 12px;border-radius:9px;margin-top:7px;font-size:14px;font-weight:600;color:#374151}.navitem.active{background:#eaf1fd;color:#1257c4}.drawer-foot{position:absolute;left:16px;right:16px;bottom:calc(20px + env(safe-area-inset-bottom));border-top:1px solid #e6eaf0;padding-top:14px;font-size:12px;color:#8a93a3}
+.screen{display:none}.screen.active{display:block}@media(max-width:360px){main{padding-left:12px;padding-right:12px}.waterfall{grid-template-columns:1fr}.wide{grid-column:auto}}
+</style></head>
+<body>
+<header class="topbar"><div class="user"><div class="brand-logo">RA</div><div><div class="user-name">RA 研究数据平台</div><div class="user-role">Rheumatoid Arthritis Research Data Platform</div></div></div><button class="iconbtn" id="menuBtn" aria-label="菜单"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></header>
+<div class="overlay" id="overlay"></div><aside class="drawer"><div class="drawer-head"><div><b>RA 研究数据平台</b><div class="user-role">Rheumatoid Arthritis Research Data Platform</div></div><button class="iconbtn" id="closeBtn">✕</button></div><div class="navitem active" data-screen="dash">数据看板</div><div class="navitem" data-screen="patients">患者列表</div><div class="drawer-foot">当前用户：研究员</div></aside>
+<main>
+<section id="dash" class="screen active"><div class="eyebrow">数据看板</div><h1>研究数据总览</h1><div class="sub">患者管理、随访进度、疾病活动度与数据质量</div>
+<div class="section"><div class="waterfall">
+<div class="card wide"><div class="metric-label">总患者数</div><div class="metric"><strong>128</strong><span class="unit">人</span></div><div class="note">当前研究队列全部建档患者</div><a class="drill goPatients">查看患者 →</a></div>
+<div class="card"><div class="metric-label">活跃患者</div><div class="metric"><strong>103</strong><span class="unit">人</span></div><div class="note">近 12 个月有随访</div><a class="drill goPatients">查看患者 →</a></div>
+<div class="card"><div class="metric-label">本月新增</div><div class="metric"><strong>7</strong><span class="unit">人</span></div><div class="note">本月新建档</div><a class="drill goPatients">查看患者 →</a></div>
+<div class="card"><div class="metric-label">数据待补全</div><div class="metric"><strong>23</strong><span class="unit">人</span></div><div class="note">存在关键字段缺失</div><a class="drill goPatients">查看患者 →</a></div>
+<div class="card"><div class="metric-label">已脱落 / 失访</div><div class="metric"><strong>8</strong><span class="unit">人</span></div><div class="note">超过 12 个月无随访</div><a class="drill goPatients">查看患者 →</a></div>
+</div></div>
+<div class="section"><div class="section-head"><div class="section-title">随访管理</div><div class="section-note">按计划随访日期</div></div><div class="waterfall" id="followups"></div></div>
+<div class="section"><div class="section-head"><div class="section-title">异常指标</div><div class="section-note">按患者人数</div></div><div class="card" id="abnormal"></div></div>
+<div class="section"><div class="section-head"><div class="section-title">疾病活动度</div><div class="section-note">DAS28 分层</div></div><div class="card" id="das"></div></div>
+<div class="section"><div class="section-head"><div class="section-title">风险提醒</div><div class="section-note">需要优先关注</div></div><div class="card" id="risks"></div></div>
+<div class="section"><div class="section-head"><div class="section-title">近期动态</div><div class="section-note">最近记录</div></div><div class="card" id="feed"></div></div></section>
+<section id="patients" class="screen"><div class="eyebrow">患者管理</div><h1>患者列表</h1><div class="sub">共 128 位患者 · 23 位数据待补全 · 17 位近期需随访</div>
+<div class="toolbar"><input class="search" id="search" placeholder="搜索患者姓名 / 研究编号"><select class="filter"><option>全部状态</option><option>近期需随访</option><option>数据待补全</option><option>已逾期</option></select><div class="datebox"><span>日期范围</span><input type="date"><span>—</span><input type="date"></div></div><div id="patientCards"></div></section>
+</main>
+<script>
+const FOLLOWUPS=[{label:"7 日内待随访",n:"11",note:"含 6 位已逾期"},{label:"14 日内待随访",n:"19",note:"需提前电话确认"},{label:"30 日内待随访",n:"41",note:"占活跃患者 40%"},{label:"已完成本期随访",n:"62",note:"本季度计划内"}];
+const ABNORMAL=[{name:"炎症指标升高",n:21,pct:62},{name:"血液学异常",n:14,pct:41},{name:"肝功能异常",n:8,pct:24},{name:"肾功能异常",n:5,pct:15}];
+const DAS=[{label:"缓解 < 2.6",n:"44",pct:"34%"},{label:"低活动 2.6–3.2",n:"36",pct:"28%"},{label:"中活动 3.2–5.1",n:"30",pct:"24%"},{label:"高活动 > 5.1",n:"18",pct:"14%"}];
+const RISKS=[{name:"疾病活动度持续恶化",n:"8",level:"高",note:"连续两次 DAS28 上升且 ≥ 5.1"},{name:"检验危急值未处理",n:"5",level:"高",note:"含重度贫血与肝酶显著升高"},{name:"随访逾期超 3 个月",n:"8",level:"中",note:"存在失访风险，建议电话随访"}];
+const FEED=[{name:"王秀英",item:"CRP 42.6 mg/L",date:"09/17"},{name:"赵明远",item:"ESR 78 mm/h",date:"09/16"},{name:"李文静",item:"血红蛋白 86 g/L",date:"09/15"},{name:"林书豪",item:"第 6 次随访 · 已完成",date:"09/17"},{name:"孙志强",item:"第 3 次随访 · 已完成",date:"09/17"}];
+const patients=[{name:"王秀英",id:"RA-2026-0087",visit:"2026/09/17",das:"5.4 ↑",tags:["近期需随访","数据完整"],warn:1},{name:"赵明远",id:"RA-2026-0062",visit:"2026/09/16",das:"4.2",tags:["炎症指标异常"],warn:1},{name:"李文静",id:"RA-2026-0051",visit:"2026/09/15",das:"3.1",tags:["数据待补全"],warn:1},{name:"陈海涛",id:"RA-2026-0044",visit:"2026/09/14",das:"2.5",tags:["数据完整"],warn:0},{name:"周雅琴",id:"RA-2026-0039",visit:"2026/09/13",das:"3.8",tags:["近期需随访"],warn:1},{name:"林书豪",id:"RA-2026-0031",visit:"2026/09/17",das:"2.3",tags:["已完成随访"],warn:0}];
+function patientList(rows){patientCards.innerHTML=rows.map(p=>`<div class="patient"><div class="patient-top"><div class="picon">${p.name.slice(-1)}</div><div><div class="pname">${p.name}</div><div class="pid">${p.id}</div></div><div class="chev">›</div></div><div class="pgrid"><div><div class="pk">最近随访</div><div class="pv">${p.visit}</div></div><div><div class="pk">DAS28</div><div class="pv">${p.das}</div></div></div><div class="tags">${p.tags.map((t,i)=>`<span class="tag ${p.warn&&i===0?"warn":""}">${t}</span>`).join("")}</div></div>`).join("")}
+function show(id){document.querySelectorAll(".screen").forEach(x=>x.classList.toggle("active",x.id===id));document.querySelectorAll(".navitem").forEach(x=>x.classList.toggle("active",x.dataset.screen===id));document.body.classList.remove("menu");scrollTo(0,0)}
+function bind(){document.querySelectorAll(".goPatients").forEach(x=>x.onclick=()=>show("patients"))}
+followups.innerHTML=FOLLOWUPS.map((x,i)=>`<div class="card ${i===0?"wide":""}"><div class="metric-label">${x.label}</div><div class="metric"><strong>${x.n}</strong><span class="unit">人</span></div><div class="note">${x.note}</div><a class="drill goPatients">查看患者 →</a></div>`).join("");
+abnormal.innerHTML=ABNORMAL.map(x=>`<div class="barrow"><div style="flex:1"><div class="barname">${x.name}</div><div class="bar"><i style="width:${x.pct}%"></i></div></div><div class="barnum">${x.n} 人</div></div>`).join("");
+das.innerHTML=DAS.map(x=>`<div class="barrow"><div class="barname">${x.label}</div><div class="barnum">${x.n} · ${x.pct}</div></div>`).join("");
+risks.innerHTML=RISKS.map(x=>`<div class="risk"><div class="risk-top"><div class="risk-name">${x.name}</div><span class="badge">${x.level} · ${x.n}人</span></div><div class="note">${x.note}</div><a class="drill goPatients">查看患者 →</a></div>`).join("");
+feed.innerHTML=FEED.map(x=>`<div class="feed"><i class="dot"></i><div class="feed-main"><div class="feed-name">${x.name}</div><div class="feed-item">${x.item}</div></div><div class="feed-date">${x.date}</div></div>`).join("");
+patientList(patients);bind();menuBtn.onclick=()=>document.body.classList.add("menu");closeBtn.onclick=overlay.onclick=()=>document.body.classList.remove("menu");document.querySelectorAll(".navitem").forEach(x=>x.onclick=()=>show(x.dataset.screen));search.oninput=e=>{let q=e.target.value.trim().toLowerCase();patientList(patients.filter(p=>!q||p.name.includes(q)||p.id.toLowerCase().includes(q)))};
+</script></body></html>
